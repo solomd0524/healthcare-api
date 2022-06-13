@@ -19,10 +19,8 @@ public interface UserMapper {
     @Mapping(target = "address", source = "address")
     @Mapping(target = "emailAddress", source = "emailAddress")
     @Mapping(target = "dateOfBirth", source = "dateOfBirth")
-    @Mapping(target = "accountId", source = "accountId")
     @Mapping(target = "userName", source = "userName")
     @Mapping(target = "password", source = "password")
-    @Mapping(target = "isAdmin", source = "isAdmin")
     User map(UserProjection source);
 
     default List<User> map(List<UserProjection> list) {

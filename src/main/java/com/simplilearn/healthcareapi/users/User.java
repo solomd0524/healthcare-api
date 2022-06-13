@@ -7,7 +7,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Getter
@@ -29,13 +28,8 @@ public class User {
 
     private Date dateOfBirth;
 
-    private Long accountId;
-
-    private BigDecimal fundsAvailable;
-
     private String userName;
 
     private String password;
 
-    private String isAdmin;
 }

@@ -2,13 +2,14 @@ package com.simplilearn.healthcareapi.users;
 
 import com.simplilearn.healthcareapi.users.exceptions.UserIsNotAdminException;
 import com.simplilearn.healthcareapi.users.exceptions.UserLogInFailedException;
+import com.simplilearn.healthcareapi.users.exceptions.UserNameNotFoundException;
 import com.simplilearn.healthcareapi.users.exceptions.UserNotFoundException;
 import lombok.AllArgsConstructor;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -25,6 +26,12 @@ public class UserService {
         }
     }
 
+    public User createUser(UserEntity userEntity) throws UserNotFoundException {
+        UserEntity userEntityCreated = userRepository.save(userEntity);
+        return UserMapper.MAPPER.map(userRepository.getUserByUserId(userEntityCreated.getUserId())
+                .orElseThrow(() -> new UserNotFoundException(userEntityCreated.getUserId())));
+    }
+
     public String getUserLogin(String userName, String password) {
         User user = UserMapper.MAPPER.map(userRepository.getUserByUserNameAndPassword(userName, password)
                 .orElseThrow(() -> new UserLogInFailedException(userName, password)));
@@ -33,16 +40,24 @@ public class UserService {
     }
 
     public String getAdminLogin(String userName) {
-        List<User> users = UserMapper.MAPPER.map(userRepository.getUserByUserName(userName));
-        User admin = users.stream().filter(user -> user.getIsAdmin().equals("true"))
-                .collect(Collectors.toList())
-                .stream().findFirst()
-                .orElse(null);
+        User user = getUserByPassword(userName);
+        if (Objects.isNull(user)) throw new UserNameNotFoundException(userName);
 
-        if (Objects.isNull(admin)) {
-            throw new UserIsNotAdminException(userName);
+        UserEntity userEntity = userRepository.findById(user.getUserId()).orElse(null);
+        boolean adminMatch = userEntity.getRoles().stream()
+                .anyMatch(role -> role.getRoleName().equalsIgnoreCase("admin"));
+
+        if (adminMatch) {
+            return "Welcome " + userEntity.getFirstName() + " " + userEntity.getLastName() + ". You are logged in as Admin.";
+        } else {
+            throw new UserIsNotAdminException(userEntity.getUserName());
         }
-        return "Welcome " + admin.getFirstName() + " " + admin.getLastName() + ". You are logged in as Admin.";
+    }
+
+    private User getUserByPassword(String userName) {
+        List<User> user = UserMapper.MAPPER.map(userRepository.getUserByUserName(userName)
+                .orElseThrow(() -> new UsernameNotFoundException(userName)));
+        return user.stream().findFirst().orElse(null);
     }
 
     public UserProfile getUserProfileByUserId(Long userId) {

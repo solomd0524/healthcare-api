@@ -29,4 +29,11 @@ class UserExceptionAdvice {
     String UserNotFoundHandler(UserNotFoundException ex) {
         return ex.getMessage();
     }
+
+    @ResponseBody
+    @ExceptionHandler(UserNameNotFoundException.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    String UserNameNotFoundHandler(UserNameNotFoundException ex) {
+        return ex.getMessage();
+    }
 }

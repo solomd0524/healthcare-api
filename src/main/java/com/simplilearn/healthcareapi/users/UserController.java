@@ -19,45 +19,43 @@ public class UserController {
     UserService userService;
     UserRepository userRepository;
 
-    @GetMapping(value = "/api/admin")
+    @GetMapping(value = "/api/admin/")
     public Iterable<UserEntity> findAllUsers() {
         return userRepository.findAll();
     }
 
-    @GetMapping(value = "/api/users/{id}")
+    @GetMapping(value = "/api/user/{id}")
     public Optional<UserEntity> findUserByUserId(@PathVariable("id") Long id) {
         return userRepository.findById(id);
     }
 
-    @PostMapping("/api/users")
-    public UserEntity createUserAccount(@RequestBody UserEntity user) {
-        UserEntity savedUser = userRepository.save(user);
-        return savedUser;
+    @PostMapping("/api/user")
+    public User createUser(@RequestBody UserEntity user) {
+        return userService.createUser(user);
     }
 
-    @DeleteMapping("/api/users/{id}")
+    @DeleteMapping("/api/user/{id}")
     public void deleteUser(@PathVariable Long id) {
         userService.deleteUserByUserId(id);
     }
 
-    @GetMapping(value = "/api/users", params = {"username", "password"})
-    public String getUserLogin(@RequestParam("username") String userName, @RequestParam("password") String password) {
+    @GetMapping(value = "/api/user", params = {"username", "password"})
+    public String userLogin(@RequestParam("username") String userName, @RequestParam("password") String password) {
         return userService.getUserLogin(userName, password);
     }
 
-    @GetMapping(value = "/api/admin", params = {"username"})
+    @GetMapping(value = "/api/admin/login", params = {"username"})
     public String getAdminLogin(@RequestParam("username") String userName) {
         return userService.getAdminLogin(userName);
     }
 
-    @GetMapping(value = "/api/users/{id}/profiles")
+    @GetMapping(value = "/api/user/{id}/profiles")
     public UserProfile getUserProfileByUserId(@PathVariable("id") Long userId) {
         return userService.getUserProfileByUserId(userId);
     }
 
-    @PutMapping(value = "/api/users/profiles/{id}")
+    @PutMapping(value = "/api/user/profiles/{id}")
     public UserProfile updateUserProfile(@PathVariable("id") Long id, @RequestBody UserProfile userProfile) {
         return userService.updateUserProfile(id, userProfile);
     }
-
 }

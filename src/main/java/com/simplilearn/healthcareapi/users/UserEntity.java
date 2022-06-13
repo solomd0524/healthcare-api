@@ -1,21 +1,28 @@
 package com.simplilearn.healthcareapi.users;
 
+import com.simplilearn.healthcareapi.roles.RoleEntity;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.math.BigDecimal;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "USER")
+@Table(name = "USER_TBL")
 public class UserEntity {
 
     @Id
@@ -38,34 +45,16 @@ public class UserEntity {
     @Column(name = "DATE_OF_BIRTH")
     private Date dateOfBirth;
 
-    @Column(name = "ACCOUNT_ID")
-    private Long accountId;
-
-    @Column(name = "FUNDS_AVAILABLE")
-    private BigDecimal fundsAvailable;
-
     @Column(name = "USER_NAME")
     private String userName;
 
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "IS_ADMIN")
-    private String isAdmin;
+    @Column(name = "ACTIVE")
+    private String active;
 
-    @Override
-    public String toString() {
-        return "UserEntity{" +
-                " userId=" + userId +
-                ", firstName='" + firstName + '\'' +
-                ", LastName='" + lastName + '\'' +
-                ", address='" + address + '\'' +
-                ", emailAddress='" + emailAddress + '\'' +
-                ", dateOfBirth='" + dateOfBirth + '\'' +
-                ", accountId=" + accountId +
-                ", userName=" + userName +
-                ", password='" + password + '\'' +
-                ", isAdmin='" + isAdmin + '\'' +
-                '}';
-    }
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "USER_ROLE_TBL", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))
+    private Set<RoleEntity> roles = new HashSet<>();
 }
