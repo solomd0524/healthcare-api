@@ -18,11 +18,11 @@ public interface CartProjection {
 
      String getMedicineName();
 
-     String getPrice();
+     BigDecimal getPrice();
 
      Long getQuantityOrdered();
 
-     Long getDiscount();
+    BigDecimal getDiscount();
 
      BigDecimal getSubTotal();
 }

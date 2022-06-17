@@ -17,6 +17,9 @@ public class UserService {
 
     private final UserRepository userRepository;
 
+    private final UserMapper userMapper;
+
+
     public void deleteUserByUserId(Long id) throws UserNotFoundException {
         UserEntity user = userRepository.findById(id).orElse(null);
         if (Objects.isNull(user)) {
@@ -28,12 +31,12 @@ public class UserService {
 
     public User createUser(UserEntity userEntity) throws UserNotFoundException {
         UserEntity userEntityCreated = userRepository.save(userEntity);
-        return UserMapper.MAPPER.map(userRepository.getUserByUserId(userEntityCreated.getUserId())
+        return userMapper.map(userRepository.getUserByUserId(userEntityCreated.getUserId())
                 .orElseThrow(() -> new UserNotFoundException(userEntityCreated.getUserId())));
     }
 
     public String getUserLogin(String userName, String password) {
-        User user = UserMapper.MAPPER.map(userRepository.getUserByUserNameAndPassword(userName, password)
+        User user = userMapper.map(userRepository.getUserByUserNameAndPassword(userName, password)
                 .orElseThrow(() -> new UserLogInFailedException(userName, password)));
 
         return "Welcome to your dashboard " + user.getFirstName() + " " + user.getLastName() + ".";
@@ -55,7 +58,7 @@ public class UserService {
     }
 
     private User getUserByPassword(String userName) {
-        List<User> user = UserMapper.MAPPER.map(userRepository.getUserByUserName(userName)
+        List<User> user = userMapper.map(userRepository.getUserByUserName(userName)
                 .orElseThrow(() -> new UsernameNotFoundException(userName)));
         return user.stream().findFirst().orElse(null);
     }

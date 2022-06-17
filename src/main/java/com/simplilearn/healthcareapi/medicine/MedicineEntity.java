@@ -10,7 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -42,5 +42,5 @@ public class MedicineEntity {
     private Long quantity;
 
     @Column(name = "EXPIRATION_DATE")
-    private Date expirationDate;
+    private ZonedDateTime expirationDate;
 }

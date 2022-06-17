@@ -1,9 +1,11 @@
-INSERT INTO USER_TBL(USER_ID, FIRST_NAME, LAST_NAME, ADDRESS, EMAIL_ADDRESS, DATE_OF_BIRTH, USER_NAME, PASSWORD, ACTIVE)
-VALUES (1, 'David', 'Solomon', '12 City Street Nashua, NH 03063', 'dsol@gmail.com', '1984-05-24', 'dsol', 'hello1',
-        'Y');
-INSERT INTO USER_TBL(USER_ID, FIRST_NAME, LAST_NAME, ADDRESS, EMAIL_ADDRESS, DATE_OF_BIRTH, USER_NAME, PASSWORD, ACTIVE)
-VALUES (2, 'Becky', 'Solomon', '12 City Street Nashua, NH 03063', 'bsol@gmail.com', '1984-05-24', 'bsol', 'hello2',
-        'Y');
+INSERT INTO USER_TBL(USER_ID, FIRST_NAME, LAST_NAME, ADDRESS, EMAIL_ADDRESS, DATE_OF_BIRTH, USER_NAME, PASSWORD,
+                     ENABLED)
+VALUES (1, 'David', 'Solomon', '12 City Street Nashua, NH 03063', 'dsol@gmail.com', '1984-05-24', 'dsol',
+        '$2a$10$VqzDJ0XCIkcT3.K9YkYrt.yji1WeYyiFWpIJOjnu5U6clg39qKZ1G', true);
+INSERT INTO USER_TBL(USER_ID, FIRST_NAME, LAST_NAME, ADDRESS, EMAIL_ADDRESS, DATE_OF_BIRTH, USER_NAME, PASSWORD,
+                     ENABLED)
+VALUES (2, 'Becky', 'Solomon', '12 City Street Nashua, NH 03063', 'bsol@gmail.com', '1984-05-24', 'bsol',
+        '$2a$10$AVO0bJcV3TdX6d0A9b03YOTSmow.sZmmBueDQHjR7YXtqrPP8MJXK', true);
 
 INSERT INTO ROLE_TBL(ROLE_ID, ROLE_NAME)
 VALUES (1, 'admin');

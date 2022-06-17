@@ -1,6 +1,6 @@
 package com.simplilearn.healthcareapi.users;
 
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public interface UserProjection {
 
@@ -14,11 +14,11 @@ public interface UserProjection {
 
     String getEmailAddress();
 
-    Date getDateOfBirth();
+    ZonedDateTime getDateOfBirth();
 
     String getUserName();
 
     String getPassword();
 
-    String getActive();
+    boolean getEnabled();
 }

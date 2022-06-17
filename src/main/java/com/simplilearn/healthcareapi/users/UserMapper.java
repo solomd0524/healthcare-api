@@ -21,6 +21,7 @@ public interface UserMapper {
     @Mapping(target = "dateOfBirth", source = "dateOfBirth")
     @Mapping(target = "userName", source = "userName")
     @Mapping(target = "password", source = "password")
+    @Mapping(target = "enabled", source = "enabled")
     User map(UserProjection source);
 
     default List<User> map(List<UserProjection> list) {

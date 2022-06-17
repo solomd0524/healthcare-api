@@ -26,7 +26,7 @@ public class Order {
 
     private String medicineName;
 
-    private String orderQty;
+    private Long orderQty;
 
     private BigDecimal total;
 
