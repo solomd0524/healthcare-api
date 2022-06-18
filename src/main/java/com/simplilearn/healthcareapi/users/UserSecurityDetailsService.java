@@ -1,7 +1,5 @@
-package com.simplilearn.healthcareapi.configuration;
+package com.simplilearn.healthcareapi.users;
 
-import com.simplilearn.healthcareapi.users.UserEntity;
-import com.simplilearn.healthcareapi.users.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

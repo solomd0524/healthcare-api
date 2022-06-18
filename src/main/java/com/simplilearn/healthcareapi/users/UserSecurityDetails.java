@@ -1,7 +1,6 @@
-package com.simplilearn.healthcareapi.configuration;
+package com.simplilearn.healthcareapi.users;
 
 import com.simplilearn.healthcareapi.roles.RoleEntity;
-import com.simplilearn.healthcareapi.users.UserEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
