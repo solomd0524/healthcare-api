@@ -1,4 +1,4 @@
-package com.simplilearn.healthcareapi;
+package com.simplilearn.healthcareapi.configuration;
 
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
