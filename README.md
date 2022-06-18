@@ -27,7 +27,7 @@ Have the application set up for Role based, basic security but need to learn mor
 was working but it was failing to find the login page which I don't have implemented yet.  UserDetailsService is working as I see the execution of the with users and roles
 apis.  As of now the healthcare app's security is disabled so apis can be run from Postman.
 
-H2 Database  - I think was because when i was commiting my changes I had the reformat button selected so it was reformatting my insert statements.  Leaving notes here just in case :)
+H2 Database  -  This has been fixed (I think leaving notes just in case)
 
 The app is using h2 but noticed a very weird error when I first start up the project.   import.sql works but when the project is shut down the import.sql gets a new line
 as some kind of reformatting goes on that causes errors on startup. Have not solved this issue yet but there is a work around:
