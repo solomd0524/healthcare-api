@@ -13,7 +13,7 @@ Medicine
 Cart
 Order
 
-APIs are completed for each object and are considered v1 objects. Will need to be add or change APIs to accomodate functionality once front end gets added.
+APIs are completed for each object and are considered v1 objects. Will need add or change APIs to accommodate functionality once front end gets added.
 
 Error Handling
 
