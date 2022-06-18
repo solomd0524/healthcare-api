@@ -24,16 +24,16 @@ public class OrderController {
     }
 
     @PostMapping(value = "/api/user/orders")
-    public OrderEntity placeOrder(@RequestBody OrderEntity order) {
+    public OrderEntity createOrder(@RequestBody OrderEntity order) {
         return orderRepository.save(order);
     }
 
-    @PutMapping(value = "/api/admin/orders")
+    @PutMapping(value = "/api/user/orders")
     public OrderEntity updateOrders(@RequestBody OrderEntity order) {
         return orderRepository.save(order);
     }
 
-    @DeleteMapping(value = "/api/admin/orders")
+    @DeleteMapping(value = "/api/user/orders")
     public void deleteOrder(@RequestBody OrderEntity order) {
         orderRepository.delete(order);
     }

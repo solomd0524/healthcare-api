@@ -9,6 +9,7 @@ public interface OrderRepository extends JpaRepository<OrderEntity, Long> {
 
     @Query(value = "select o.orderId as orderId, " +
             "              o.orderNumber as orderNumber, " +
+            "              o.userId as userId, " +
             "              m.medicineId as medicineId, " +
             "              m.medicineName as medicineName, " +
             "              o.orderQty as orderQty, " +

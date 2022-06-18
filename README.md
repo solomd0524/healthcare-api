@@ -56,3 +56,7 @@ Junit tests
 
 Junit tests are completed for services only 
 Still need to complete Junit tests for Controller and Mappers
+
+Carts - initializeCarts method
+
+I don't have much experience with web app design, but I've seen carts as we all have, for a long time.  I was thinking that as soon as a user and account are created I would initialize a cart with user info.  We'll need to see how this works out :).

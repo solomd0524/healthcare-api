@@ -39,6 +39,11 @@ public class UserController {
         userService.deleteUserByUserId(id);
     }
 
+    @PutMapping("/api/user")
+    public void updateUser(@RequestBody UserEntity user) {
+        userRepository.save(user);
+    }
+
     @GetMapping(value = "/api/user", params = {"username", "password"})
     public String userLogin(@RequestParam("username") String userName, @RequestParam("password") String password) {
         return userService.getUserLogin(userName, password);

@@ -27,8 +27,13 @@ public class MedicineController {
         return medicineService.findMedicineByUses(uses);
     }
 
+    @GetMapping(value = "/api/user/medicines", params = {"name"})
+    public List<Medicine> findMedicineByName(@RequestParam("name") String medicineName) {
+        return medicineService.findMedicineByName(medicineName);
+    }
+
     @PostMapping(value = "/api/admin/medicines")
-    public MedicineEntity addMedicine(@RequestBody MedicineEntity medicine) {
+    public MedicineEntity createMedicine(@RequestBody MedicineEntity medicine) {
         return medicineRepository.save(medicine);
     }
 

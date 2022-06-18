@@ -1,5 +1,6 @@
 package com.simplilearn.healthcareapi.medicine;
 
+import com.simplilearn.healthcareapi.medicine.exceptions.MedicineByNameNotFoundException;
 import com.simplilearn.healthcareapi.medicine.exceptions.MedicineForUsesNotFoundException;
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
@@ -37,6 +38,7 @@ class MedicineServiceTest {
     private MedicineMapper medicineMapper;
 
     private static final String USES = "Pain Management";
+    private static final String MEDICINE_NAME = "Advil";
     private static final Medicine medicine = new MedicineStub();
     private static final List<Medicine> medicineList = Collections.singletonList(medicine);
     private static final MedicineProjectionStub medicineProjection = new MedicineProjectionStub();
@@ -57,8 +59,28 @@ class MedicineServiceTest {
     }
 
     @Test
-    void whenGetOrdersByUserId_whereNoOrderIsFound_thenThrowEntityNotFoundException() {
+    void whenGetMedicineByUserId_whereNoMedicineIsFound_thenThrowException() {
         given(medicineRepository.findMedicineByUses(anyString())).willReturn(Optional.empty());
         assertThrows(MedicineForUsesNotFoundException.class, () -> medicineService.findMedicineByUses(USES));
+    }
+
+    @Test
+    void whenFindMedicineByMedicineName_thenReturnMedicine() {
+
+        given(medicineRepository.findMedicineByName(anyString())).willReturn(Optional.of(medicineProjectionList));
+        given(medicineMapper.map(medicineProjectionList)).willReturn(medicineList);
+        List<Medicine> result = medicineService.findMedicineByName(MEDICINE_NAME);
+
+        assertThat(result).isNotNull();
+        assertThat(result.get(0)).isNotNull();
+        assertThat(result.get(0).getMedicineId()).isEqualTo(1L);
+
+        verify(medicineRepository, times(1)).findMedicineByName(anyString());
+    }
+
+    @Test
+    void whenFindMedicineByMedicineName_whereNoMedicineIsFound_thenThrowException() {
+        given(medicineRepository.findMedicineByName(anyString())).willReturn(Optional.empty());
+        assertThrows(MedicineByNameNotFoundException.class, () -> medicineService.findMedicineByName(MEDICINE_NAME));
     }
 }
