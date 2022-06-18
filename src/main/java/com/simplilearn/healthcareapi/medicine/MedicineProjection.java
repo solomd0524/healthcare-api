@@ -1,7 +1,7 @@
 package com.simplilearn.healthcareapi.medicine;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 public interface MedicineProjection {
 
@@ -19,5 +19,5 @@ public interface MedicineProjection {
 
      Long getQuantity();
 
-     Date getExpirationDate();
+     ZonedDateTime getExpirationDate();
 }

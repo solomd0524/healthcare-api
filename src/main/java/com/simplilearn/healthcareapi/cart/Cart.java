@@ -30,9 +30,9 @@ public class Cart {
 
     private String medicineName;
 
-    private BigDecimal price;
-
     private Long quantityOrdered;
+
+    private BigDecimal price;
 
     private BigDecimal discount;
 
