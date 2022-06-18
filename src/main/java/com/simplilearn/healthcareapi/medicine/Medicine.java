@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.ZonedDateTime;
 
 @Getter
 @Setter
@@ -31,5 +31,5 @@ public class Medicine {
 
     private Long quantity;
 
-    private Date expirationDate;
+    private ZonedDateTime expirationDate;
 }

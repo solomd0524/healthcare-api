@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-import java.util.Date;
+import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -43,7 +43,7 @@ public class UserEntity {
     private String emailAddress;
 
     @Column(name = "DATE_OF_BIRTH")
-    private Date dateOfBirth;
+    private ZonedDateTime dateOfBirth;
 
     @Column(name = "USER_NAME")
     private String userName;
@@ -51,8 +51,8 @@ public class UserEntity {
     @Column(name = "PASSWORD")
     private String password;
 
-    @Column(name = "ACTIVE")
-    private String active;
+    @Column(name = "ENABLED")
+    private boolean enabled;
 
     @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(name = "USER_ROLE_TBL", joinColumns = @JoinColumn(name = "USER_ID"), inverseJoinColumns = @JoinColumn(name = "ROLE_ID"))

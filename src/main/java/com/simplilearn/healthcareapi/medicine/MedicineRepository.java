@@ -5,6 +5,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface MedicineRepository extends JpaRepository<MedicineEntity, Long> {
@@ -19,5 +20,5 @@ public interface MedicineRepository extends JpaRepository<MedicineEntity, Long> 
             "              m.expirationDate as expirationDate " +
             "         from MedicineEntity m " +
             "        where m.uses = :uses")
-    List<MedicineProjection> findMedicineByUses(String uses);
+    Optional<List<MedicineProjection>> findMedicineByUses(String uses);
 }

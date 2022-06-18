@@ -16,7 +16,7 @@ public class OrderService {
     OrderMapper orderMapper;
 
     public List<Order> findOrdersByUserId(Long userId) {
-        List<Order> orderList = OrderMapper.MAPPER.map(orderRepository.findOrdersByUserId(userId));
+        List<Order> orderList = orderMapper.map(orderRepository.findOrdersByUserId(userId));
         if (ObjectUtils.isEmpty(orderList)) throw new OrderNotFoundForUserException(userId);
         return orderList;
     }
