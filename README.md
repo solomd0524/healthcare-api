@@ -1,7 +1,7 @@
 # healthcare-api
 web app apis to manage medicine
 
-Status
+Release 1 notes:
 
 Model Domain objects
 
@@ -27,7 +27,7 @@ Have the application set up for Role based, basic security but need to learn mor
 was working but it was failing to find the login page which I don't have implemented yet.  UserDetailsService is working as I see the execution of the with users and roles
 apis.  As of now the healthcare app's security is disabled so apis can be run from Postman.
 
-H2 Database
+H2 Database  - I think was because when i was commiting my changes I had the reformat button selected so it was reformatting my insert statements.  Leaving notes here just in case :)
 
 The app is using h2 but noticed a very weird error when I first start up the project.   import.sql works but when the project is shut down the import.sql gets a new line
 as some kind of reformatting goes on that causes errors on startup. Have not solved this issue yet but there is a work around:
@@ -50,3 +50,9 @@ INSERT INTO USER_TBL(USER_ID, FIRST_NAME, LAST_NAME, ADDRESS, EMAIL_ADDRESS, DAT
 INSERT INTO USER_TBL(USER_ID, FIRST_NAME, LAST_NAME, ADDRESS, EMAIL_ADDRESS, DATE_OF_BIRTH, USER_NAME, PASSWORD, ENABLED) VALUES (2, 'Becky', 'Solomon', '12 City Street Nashua, NH 03063', 'bsol@gmail.com', '1984-05-24', 'bsol','$2a$10$AVO0bJcV3TdX6d0A9b03YOTSmow.sZmmBueDQHjR7YXtqrPP8MJXK', true);
 
 You need manually format all the insert statement so they look like this.
+
+
+Junit tests
+
+Junit tests are completed for services only 
+Still need to complete Junit tests for Controller and Mappers
